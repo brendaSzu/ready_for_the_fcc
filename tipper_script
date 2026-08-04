@@ -1,0 +1,19 @@
+banned_words = ['fuck', 'bitch', 'ass', 'bitches', 'bi-bi-bi-bitch', 'mothafucka', 'motherfucka', 'motherfucker', 'shit', 'dyke', 'bull-dykin', 'muh-fuckin', 'motherfuckin', 'lazy-ass']
+
+lyrics_file = 'get_outta_my_house.txt'
+
+try:
+    with open(lyrics_file, 'r', encoding='utf-8') as file:
+        contents = file.read()
+    censored_lyrics = contents.lower()
+    
+    for word in banned_words:
+        censored_lyrics = censored_lyrics.replace(word, '***CENSORED***')
+        
+    with open(lyrics_file, 'w', encoding='utf-8') as file:
+        file.write(censored_lyrics)
+        
+    print('Success! Lyrics are now lowercase and censored.')
+
+except FileNotFoundError:
+    print('Error: The specified file could not be found.')
